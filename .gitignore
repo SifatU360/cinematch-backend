@@ -4,9 +4,9 @@
 !.env.example
 
 # Python
-backend/__pycache__/
-backend/.pytest_cache/
-backend/.venv/
+__pycache__/
+.pytest_cache/
+.venv/
 
 # OS
 .DS_Store
