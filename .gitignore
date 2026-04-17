@@ -1,0 +1,13 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Python
+backend/__pycache__/
+backend/.pytest_cache/
+backend/.venv/
+
+# OS
+.DS_Store
+Thumbs.db
