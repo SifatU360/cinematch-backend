@@ -13,7 +13,13 @@ warnings.filterwarnings("ignore")
 
 load_dotenv()
 
-cors_origins = [origin.strip() for origin in os.getenv("BACKEND_CORS_ORIGINS", "http://localhost:5173").split(",") if origin.strip()]
+raw_cors_origins = os.getenv("BACKEND_CORS_ORIGINS", "*").strip()
+if raw_cors_origins == "*":
+    cors_origins = ["*"]
+    allow_credentials = False
+else:
+    cors_origins = [origin.strip() for origin in raw_cors_origins.split(",") if origin.strip()]
+    allow_credentials = True
 
 app = FastAPI(
     title="CineMatch API",
@@ -24,7 +30,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
-    allow_credentials=True,
+    allow_credentials=allow_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
